@@ -31,9 +31,14 @@ You can run these installation commands safely multiple times, if you think that
 
 ```
 meta/profiles/
+└── studlap
 ```
 ### Dotbot configurations
 
 ```
 meta/configs/
+├── doom-emacs.yaml
+├── git.yaml
+├── lightdm.yaml
+└── x.yaml
 ```
