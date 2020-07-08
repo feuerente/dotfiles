@@ -40,5 +40,6 @@ meta/configs/
 ├── doom-emacs.yaml
 ├── git.yaml
 ├── lightdm.yaml
+├── ranger.yaml
 └── x.yaml
 ```
