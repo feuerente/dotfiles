@@ -10,13 +10,15 @@ This repository contains [machine-specific configuration](https://github.com/ani
 git clone --recursive git@github.com:feuerente/dotfiles.git ~/.dotfiles
 ```
 
-For installing a predefined profile:
+### For installing a predefined profile:
+
 ```bash
 ~/.dotfiles ./install-profile <profile> [<configs...>]
 ```
 See [meta/profiles/](.meta/profiles) for available profiles
 
-For installing single configurations:
+### For installing single configurations:
+
 ```bash
 ~/.dotfiles ./install-standalone <configs...>
 ```
@@ -27,3 +29,6 @@ You can run these installation commands safely multiple times.
 _*Note:*_ Any configuration can be run as sudo by adding  `-sudo` to the end of it when invoking the install script.
 *DO NOT* run the script as a sudoer.
 
+# License
+
+Unlicense: This is free and unencumbered software released into the public domain.
