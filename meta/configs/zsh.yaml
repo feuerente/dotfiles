@@ -1,0 +1,5 @@
+- link:
+    ~/.config/zsh/.p10k.zsh: zsh/p10k.zsh
+    ~/.config/zsh/.zshrc-alias: zsh/zshrc-alias
+    ~/.config/zsh/.zshrc-functions: zsh/zshrc-functions
+    ~/.zshrc: zsh/.zshrc
