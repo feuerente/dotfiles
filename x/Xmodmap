@@ -1,9 +1,9 @@
-! Exchange Caps_Loch and Escape
+!! Exchange Caps_Lock and Escape
 !clear lock
-!keycode    9 = Caps_Lock NoSymbol Caps_Lock
-!keycode   66 = Escape NoSymbol Escape
-!add     lock = Caps_Lock
+!keycode     9 = Caps_Lock NoSymbol Caps_Lock
+!keycode    66 = Escape NoSymbol Escape
+!add lock      = Caps_Lock
 
-! Exchange Alt_l and Escape
+!! Exchange Alt_L and Escape
 keycode     9 = Alt_L
 keycode    64 = Escape NoSymbol Escape
