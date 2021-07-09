@@ -91,7 +91,15 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(fzf sudo alias-finder)
+plugins=(
+  fzf
+  sudo
+  alias-finder
+
+  #-------[ install these plugins first ]--------#
+  zsh-autosuggestions
+  #zsh-autocomplete
+)
 
 # plugin: alias-finder
 # automaticaly display matching alias to command
