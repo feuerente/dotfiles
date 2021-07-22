@@ -62,3 +62,13 @@
 
 ;; projectile
 ;;(setq projectile-project-search-path '("/mnt/d/projects/" "/mnt/d/repos"))
+
+;; View LaTeX in external exitor
+(map! :map LaTeX-mode-map
+      :localleader
+      :desc "View" "v" #'TeX-view)
+
+;; Live preview of LaTeX
+(map! :map LaTeX-mode-map
+      :localleader
+      :desc "Live-View" "l" #'latex-preview-pane-mode)
