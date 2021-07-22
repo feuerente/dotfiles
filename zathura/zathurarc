@@ -1,0 +1,26 @@
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
+map <F11> reload
+map r reload
+map R rotate
+map K zoom out
+map J zoom in
+map i recolor
+map p print
+map <C-a> feedkeys ":exec okular %<Return>"
+
+map t info
+
+map <Right> navigate next
+map <Left> navigate previous
+map L navigate next
+map H navigate previous
+
+map U scroll half-up
+map u navigate previous
+map D scroll half-down
+map d navigate next
+
+map a adjust_window best-fit
+map s adjust_window width
