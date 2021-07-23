@@ -96,10 +96,11 @@ plugins=(
   sudo
   alias-finder
 
-  #-------[ install these plugins first ]--------#
-  zsh-autosuggestions
-  #zsh-autocomplete
 )
+
+#-------[ install these plugins from aur ]--------#
+# zsh-autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # plugin: alias-finder
 # automaticaly display matching alias to command
