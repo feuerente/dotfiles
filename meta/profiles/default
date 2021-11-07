@@ -1,6 +1,8 @@
 doom-emacs
 git
 i3
+polybar
+rofi
 x
 xmonad
 zathura
