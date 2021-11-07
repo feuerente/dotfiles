@@ -55,10 +55,10 @@ set $right l
 # setting variables for later use
 # use xrandr and/or arandr to know the names of your monitors
 # use this line to tell which monitor is on the right
-exec --no-startup-id xrandr --output Virtual1 --right-of Virtual2 --auto
+exec --no-startup-id xrandr --output HDMI-1-0 --right-of eDP-1 --auto
 
-set $firstMonitor Virtual1
-set $secondMonitor Virtual2
+set $firstMonitor eDP-1
+set $secondMonitor HDMI-1-0
 
 workspace 1 output $firstMonitor
 workspace 2 output $firstMonitor
