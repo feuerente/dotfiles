@@ -489,41 +489,32 @@ popup_during_fullscreen smart
 # disable window title bars (needed for gaps)
 for_window [class=".*"] border pixel 2
 
-gaps inner 5
-gaps outer 5
+set $gaps_inner 5
+set $gaps_outer 5
+set $gaps_delta 5
+
+gaps inner $gaps_inner
+gaps outer $gaps_outer
 
 # only enable gaps on a workspace when there is at least one container
 #smart_gaps on
 # only draw borders on windows if there is more than one window in a workspace
 #smart_borders on
 
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps Gaps: h|l|d        (inner|Shift->outer)
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
+     bindsym l      gaps inner current plus  $gaps_delta
+     bindsym h      gaps inner current minus $gaps_delta
+     bindsym d      gaps inner current set   $gaps_inner
 
-mode "$mode_gaps_inner" {
-        bindsym l  gaps inner current plus 5
-        bindsym h gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
+     bindsym Shift+l      gaps outer current plus  $gaps_delta
+     bindsym Shift+h      gaps outer current minus $gaps_delta
+     bindsym Shift+d      gaps outer current set   $gaps_outer
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym l  gaps outer current plus 5
-        bindsym h gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
 }
 
 ##############
