@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
-#
+
 # ~/.config/polybar/launch.sh
 #
 # Startup logic for polybar
 #
 # More info: https://github.com/polybar/polybar/wiki
-#
+
 
 # Terminate already running bar instances
 killall -q polybar
