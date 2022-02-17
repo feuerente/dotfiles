@@ -464,11 +464,14 @@ bindsym XF86AudioStop exec --no-startup-id playerctl stop
 #bindsym XF86AudioStop exec --no-startup-id "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
 
 ##############
-# xbacklight #
+# backlight #
 ##############
 
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp   exec --no-startup-id light -A 5  # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5  # decrease screen brightness
+
+bindsym Shift+XF86MonBrightnessUp   exec --no-startup-id light -A 1  # increase screen brightness
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id light -U 1  # decrease screen brightness
 
 ##################
 # border control #
