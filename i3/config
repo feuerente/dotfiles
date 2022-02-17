@@ -350,6 +350,9 @@ for_window [window_role="setup"] floating enable
 #Polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh &
 
+#nextcloud client
+exec_always --no-startup-id nextcloud
+
 
 
 
