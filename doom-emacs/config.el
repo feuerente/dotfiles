@@ -61,7 +61,7 @@
 ;;(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation
 
 ;; projectile
-;;(setq projectile-project-search-path '("/mnt/d/projects/" "/mnt/d/repos"))
+(setq projectile-project-search-path '("/data/projects/" "/data/repos"))
 
 ;; View LaTeX in external exitor
 (map! :map LaTeX-mode-map
