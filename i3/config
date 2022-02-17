@@ -445,7 +445,8 @@ bindsym $mod+Shift+Return exec --no-startup-id thunar;focus
 # screenshots #
 ###############
 
-bindsym Print exec --no-startup-id spectacle
+bindsym Print         exec --no-startup-id spectacle
+bindsym Control+Print exec --no-startup-id spectacle -r
 #bindsym Print exec --no-startup-id scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
 #bindsym Control+Print exec --no-startup-id xfce4-screenshooter
 #bindsym Control+Shift+Print exec --no-startup-id gnome-screenshot -i
