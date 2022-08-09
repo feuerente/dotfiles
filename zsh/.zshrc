@@ -110,6 +110,10 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Use vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
