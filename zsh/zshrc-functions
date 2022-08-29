@@ -42,3 +42,65 @@ rga-fzf() {
 	echo "opening $file" &&
 	xdg-open "$file"
 }
+
+# fzf launcher
+# Inspiration: https://matt-a-bennett.github.io/fzf_launcher/fzf_launcher.html
+#
+# libreoffec $(fzf --multi) &
+# xdg-open <ctrl-t> &
+
+# Run command/application and choose paths/files with fzf.
+# Always return control of the terminal to user (e.g. when opening GUIs).
+# The full command that was used will appear in your history just like any
+# other
+#
+# Usage:
+# f cd [OPTION]... (hit enter, choose path)
+# f cat [OPTION]... (hit enter, choose files)
+# f vim [OPTION]... (hit enter, choose files)
+# f vlc [OPTION]... (hit enter, choose files)
+#
+# TODO
+# - Options don't work
+# - Add ability to search within pdf files and open them (fzf --multi)
+
+f() {
+    # Store the program
+    if [ $# -eq 0 ]
+    then
+        # if no arguments passed, use xdg-open
+        program="xdg-open"
+    else
+        program="$1"
+
+        # Remove first argument off the list
+        shift
+    fi
+
+    # Store any option flags
+    #set -A options "$@"   #?
+
+    # Store the arguments from fzf
+    arguments=$(fzf --multi)
+
+    # If no arguments passed (e.g. if Esc pressed), return to terminal
+    if [ -z "${arguments}" ]; then
+        return 1
+    fi
+
+    # Sanitise the command by putting single quotes around each argument, also
+    # first put an extra single quote next to any pre-existing single quotes in
+    # the raw argument. Put them all on one line.
+    for arg in "${arguments[@]}"; do
+        arguments=$(echo "$arg" | sed "s/'/''/g; s/.*/'&'/g; s/\n//g")
+    done
+
+    # If the program is on the GUI list, add a '&'
+    if [[ "$program" =~ ^(zathura|vlc|libreoffice|lo)$ ]]; then
+        arguments="$arguments &"
+    fi
+
+    # Add the command with the sanitised arguments to the history
+    print -s "$program $arguments"
+    eval $program $arguments
+}

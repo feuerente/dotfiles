@@ -145,6 +145,10 @@ export HISTCONTROL=ignoreboth:erasedups
 export EDITOR='vim'
 export VISUAL='emacs'
 
+# When fzf is invoked with no input this command is used
+# I modified it to also find linked files
+export FZF_DEFAULT_COMMAND="find -L * -path '*/\.*' -prune -o -type f -print -o -type l -print 2> /dev/null"
+
 #PS1='[\u@\h \W]\$ '
 
 if [ -d "$HOME/.bin" ] ;
