@@ -1,2 +1,2 @@
 - link:
-    ~/.xmonad/xmonad.hs: xmonad.hs
+    ~/.xmonad: configfiles/xmonad
