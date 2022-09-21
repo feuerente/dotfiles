@@ -1,4 +1,4 @@
 - link:
-    ~/.Xmodmap: x/Xmodmap
-    ~/.xprofile: x/xprofile
-    ~/.xinitrc: x/xinitrc
+    ~/.Xmodmap: configfiles/x/Xmodmap
+    ~/.xprofile: configfiles/x/xprofile
+    ~/.xinitrc: configfiles/x/xinitrc
