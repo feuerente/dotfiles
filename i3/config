@@ -409,7 +409,7 @@ exec --no-startup-id volumeicon
 exec --no-startup-id conky -c ~/.config/i3/system-overview
 
 #feh sets wallpaper
-exec --no-startup-id feh --bg-fill ~/cloud-feuerente/Bilder/wallpapers/bg_stone.jpg &
+exec --no-startup-id feh --bg-fill ~/.dotfiles/wallpaper/bg_stone.jpg &
 
 #######################
 # system applications #
