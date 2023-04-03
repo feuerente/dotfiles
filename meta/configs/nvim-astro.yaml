@@ -1,0 +1,4 @@
+# TODO Install AstroNvim (if needed)
+
+- link:
+    ~/.config/nvim/lua/user: configfiles/nvim-astro
