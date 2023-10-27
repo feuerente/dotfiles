@@ -1,12 +1,47 @@
 -- set vim options here (vim.<first_key>.<second_key> = value)
 return {
   opt = {
-    -- set to true or false etc.
-    relativenumber = true, -- sets vim.opt.relativenumber
-    number = true, -- sets vim.opt.number
-    spell = false, -- sets vim.opt.spell
-    signcolumn = "auto", -- sets vim.opt.signcolumn to auto
-    wrap = false, -- sets vim.opt.wrap
+    breakindent = true,
+    wrap = false,
+    showbreak="↪",
+    shiftround = true,
+
+    confirm = true,
+
+    cursorline = true,
+    colorcolumn = "80",
+
+    list = true,
+    mouse = "a",
+
+    number = true,
+    relativenumber = true,
+
+    sidescrolloff = 5,
+    scrolloff = 5,
+
+    signcolumn = "yes",
+
+    ignorecase = true,
+    smartcase = true,
+    smartindent = true,
+
+    expandtab = true,
+    shiftwidth = 4,
+    softtabstop = 4,
+    tabstop = 4,
+
+    spelllang = { "en","de" },
+
+    splitbelow = true,
+    splitright = true,
+
+    undofile = true,
+
+    updatetime = 200,
+    timeoutlen = 300,
+
+    termguicolors = true,
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader

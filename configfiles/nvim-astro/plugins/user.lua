@@ -9,4 +9,19 @@ return {
   --     require("lsp_signature").setup()
   --   end,
   -- },
+
+  {
+    "mbbill/undotree",
+    event = "User AstroFile",
+  },
+  {
+    "folke/todo-comments.nvim",
+    event = "User AstroFile",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function() require("todo-comments").setup {} end,
+  },
+  {
+    "eandrju/cellular-automaton.nvim",
+    cmd = "CellularAutomaton",
+  },
 }
