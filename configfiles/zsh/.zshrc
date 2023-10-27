@@ -142,8 +142,11 @@ setopt GLOB_DOTS
 
 export HISTCONTROL=ignoreboth:erasedups
 
-export EDITOR='vim'
+export EDITOR='nvim'
 export VISUAL='emacs'
+
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
 
 # When fzf is invoked with no input this command is used
 # I modified it to also find linked files
