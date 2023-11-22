@@ -32,7 +32,7 @@ discharging = #c7ae25
 # Main i3 bar
 ################################################################################
 
-[bar/mainbar-i3]
+[bar/mainbar-i3-primary]
 monitor = ${env:MONITOR}
 bottom = false
 fixed-center = true
@@ -67,28 +67,31 @@ font-2 = "Noto Sans Mono:size=10;0"
 
 modules-left   = i3 xwindow
 modules-center = date
-modules-right  = cpu memory backlight battery updates
+modules-right  = cpu memory backlight battery updates tray
 ; i3 xwindow load-average updates networkspeedup networkspeeddown memory filesystem battery cpu backlight date
 
 ;separator = |
 
-tray-position = right
-tray-padding = 3
-;tray-background = #0063ff
-
-enable-ipc = false
+enable-ipc = true
 
 click-left =
 click-middle =
 click-right =
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+scroll-up = "#i3.prev"
+scroll-down = "#i3.next"
 double-click-left =
 double-click-middle =
 double-click-right =
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[bar/mainbar-i3]
+inherit = bar/mainbar-i3-primary
+
+modules-left   = i3 xwindow
+modules-center = date
+modules-right  = cpu memory backlight battery
 
 
 ################################################################################
@@ -130,15 +133,14 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 type = internal/backlight
 
 ; $ ls -1 /sys/class/backlight
-card = intel_backlight
+card = amdgpu_bl1
+
+enable-scroll = true
 
 ;
 format-prefix = " "
 format-prefix-foreground = #ebcb8b
 format = <label>%
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
-
 label = %percentage%
 
 [module/battery]
@@ -149,7 +151,7 @@ full-at = 98
 
 ; $ ls -1 /sys/class/power_supply/
 battery = BAT0
-adapter = ADP1
+adapter = ADP0
 
 format-charging = <ramp-capacity> <label-charging>
 label-charging =  %{F#FFF}%percentage%%%{F-}
@@ -202,8 +204,6 @@ format-padding = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 ;format-underline = ${colors.accent}
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 
 ; Available tokens:
 ;   %percentage% (default) - total cpu load averaged over all cores
@@ -243,8 +243,6 @@ type = custom/script
 exec = ~/.config/polybar/scripts/check-updates.sh
 interval = 1000
 label = %output%
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 format-prefix = "  "
 format-prefix-foreground = #FFBB00
 ;format-underline = #FFBB00
@@ -259,8 +257,6 @@ interval = 10
 ;label = %output%
 label = %output:10%
 
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 format-prefix = "  "
 format-prefix-foreground = #62FF00
 ;format-underline = #62FF00
@@ -281,8 +277,6 @@ time = %H:%M
 format-prefix = " "
 format-prefix-foreground = #c1941a
 ;format-underline = ${colors.accent}
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 label = %date% %time%
 
 [module/filesystem]
@@ -387,9 +381,6 @@ label-urgent-background = ${colors.background}
 label-urgent-foreground = ${colors.alert}
 label-urgent-padding = ${self.label-focused-padding}
 
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
-
 ; Separator in between workspaces
 ; label-separator = |
 ; label-separator-padding = 2
@@ -405,8 +396,6 @@ interval = 2
 format-prefix = "  "
 format-prefix-foreground = ${colors.memory}
 ;format-underline = ${colors.memory}
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 
 ; Available tags:
 ;   <label> (default)
@@ -612,9 +601,6 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground}
 
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
-
 [module/pavolume]
 ; Not configured
 type = custom/script
@@ -626,18 +612,12 @@ click-left = ~/.config/polybar/scripts/pavolume.sh --togmute
 scroll-up = ~/.config/polybar/scripts/pavolume.sh --up
 scroll-down = ~/.config/polybar/scripts/pavolume.sh --down
 format-underline = #3EC13F
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
-
 
 [module/xwindow]
 type = internal/xwindow
 
 label = %title%
 label-maxlen = 80
-
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 
 [module/temperature1]
 ;https://github.com/jaagr/polybar/wiki/Module:-temperature
@@ -657,8 +637,6 @@ hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input
 
 warn-temperature = 70
 format = <ramp> <label>
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 format-underline = #c72581
 format-warn = <ramp> <label-warn>
 format-warn-underline = #c7254f
@@ -678,8 +656,6 @@ type = custom/script
 exec = ~/.config/polybar/scripts/tempcores.sh
 interval = 2
 format-padding = 1
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 format-underline = #C1B93E
 format-prefix-foreground = #C1B93E
 label =  %output:0:150:%
@@ -689,8 +665,6 @@ label =  %output:0:150:%
 type = custom/script
 exec = ~/.config/polybar/scripts/pub-ip.sh
 interval = 100
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 format-underline = #FFBB00
 label = %output%
 format-prefix = "  "
@@ -703,8 +677,6 @@ exec = ~/.config/polybar/scripts/spotify1.sh
 interval = 1
 
 ;format = <label>
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 format-padding = 2
 format-underline = #0f0
 format-prefix = "  "
@@ -718,16 +690,12 @@ type = custom/script
 tail = true
 format-prefix = "  "
 format = <label>
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 exec = ~/.config/polybar/scripts/scroll_spotify_status.sh
 
 [module/spotify-prev]
 type = custom/script
 exec = echo ""
 format = <label>
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 click-left = playerctl previous spotify
 click-right = spotify
 
@@ -736,8 +704,6 @@ type = custom/ipc
 hook-0 = echo ""
 hook-1 = echo ""
 initial = 1
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 click-left = playerctl play-pause spotify
 click-right = spotify
 
@@ -745,8 +711,6 @@ click-right = spotify
 type = custom/script
 exec = echo ""
 format = <label>
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 click-left = playerctl next spotify
 click-right = spotify
 
@@ -756,8 +720,6 @@ exec = echo " Variety"
 ;exec = echo " "
 interval = 1
 tail = true
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 format-prefix = ""
 format-prefix-foreground = #FFFFF
 format-underline = #0084FF
@@ -803,8 +765,6 @@ format = <label>
 format-prefix = " "
 format-prefix-foreground = #3EC13F
 format-underline = #3EC13F
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
 exec = python -u ~/.config/polybar/scripts/weather.py
 tail = true
 
@@ -855,16 +815,12 @@ format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 format-prefix-background = ${colors.background}
 format-prefix-underline = #3ecfb2
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
-
 label-layout = %layout%
 label-layout-underline = #3ecfb2
 label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.background}
 label-indicator-underline = ${colors.foreground}
-
 
 [module/bspwm]
 type = internal/bspwm
@@ -937,18 +893,23 @@ menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
+[module/tray]
+type= internal/tray
+
+tray-padding = 0
+
 [settings]
 screenchange-reload = true
 
 ; Define fallback values used by all module formats
-format-foreground = #FF0000
-format-background = #00FF00
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
 format-underline =
 format-overline =
-format-spacing =
-format-padding =
-format-margin =
-format-offset =
+;format-spacing =
+;format-padding =
+;format-margin =
+;format-offset =
 
 [global/wm]
 margin-top    = 0
