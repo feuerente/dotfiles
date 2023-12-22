@@ -1,0 +1,46 @@
+conky.config = {
+own_window = true,
+own_window_transparent = true,
+own_window_type = 'desktop',
+own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+own_window_argb_visual = true,
+own_window_argb_value = 0,
+out_to_console = false,
+use_xft = true,
+font = 'San Francisco Display Light:size=12',
+update_interval = 2,
+cpu_avg_samples = 2,
+net_avg_samples = 2,
+double_buffer = true,
+maximum_width = 385,
+draw_shades = false,
+draw_outline = false,
+draw_borders = false,
+stippled_borders = 1,
+border_width = 0,
+default_color = 'white',
+default_shade_color = 'white',
+default_outline_color = 'white',
+alignment = 'top_right',
+gap_x = 0,
+gap_y = 0,
+use_spacer = 'left',
+no_buffers = true,
+uppercase = false
+}
+conky.text = [[
+
+${goto 30}${font  Raleway:weight Light:size=24}${alignr}Google Tasks ${voffset -5}${font Pizza Dude Bullets:size20}Y    
+
+${font}${exec python ~/dev/scripts/python/task.py}
+
+
+
+
+${goto 30}${font Raleway:weight Light:size=24}${alignr}What's the WOD ${voffset -6}${font Pizza Dude Bullets:size20}Y    
+
+${font}${exec cat  ~/.conky/wod}    
+
+
+
+]]

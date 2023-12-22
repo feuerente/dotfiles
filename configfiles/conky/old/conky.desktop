@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Conky
+Exec=conky --daemonize -c ~/Dokumente/Conky_19-01-25_wick/myConky/myConky/myConky_1_1.config --pause=5
+StartupNotify=false
+Terminal=false

@@ -1,0 +1,71 @@
+conky.config = {
+own_window = true,
+own_window_transparent = true,
+own_window_type = 'desktop',
+own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+own_window_argb_visual = true,
+own_window_argb_value = 0,
+out_to_console = false,
+use_xft = true,
+font = 'San Francisco Display Light:size=12',
+update_interval = 2,
+cpu_avg_samples = 2,
+net_avg_samples = 2,
+double_buffer = true,
+maximum_width = 350,
+draw_shades = false,
+draw_outline = false,
+draw_borders = false,
+stippled_borders = 1,
+border_width = 0,
+default_color = 'white',
+default_shade_color = 'white',
+default_outline_color = 'white',
+alignment = 'top_left',
+gap_x = 0,
+gap_y = 0,
+use_spacer = 'left',
+no_buffers = true,
+uppercase = false
+}
+conky.text = [[
+
+${font  Raleway:weight Light:size=24}${time %A}, ${font Raleway:weight Lightt:size=24}${time %d %b}
+${goto 15}${font Raleway:weight Light:size=80}${time %I:%M}${font}
+
+
+
+${goto 30}${font Pizza Dude Bullets:size20}Y${voffset -10} ${font  Raleway:weight Light:size=20}System
+${goto 50}${font}${color grey}Linux: ${alignr}$color$kernel
+${goto 50}${font}${color grey}CPU1: ${color}${cpu cpu1}%${alignr}${color grey}CPU2: ${color}${cpu cpu2}%
+${goto 50}${font}${color grey}CPU3: ${color}${cpu cpu3}%${alignr}${color grey}CPU4: ${color}${cpu cpu4}%
+
+
+${goto 30}${font Pizza Dude Bullets:size20}Y${voffset -10} ${font  Raleway:weight Light:size=20}Network
+${goto 50}${font}${color grey}Network: ${alignr}${color}${wireless_essid wlp1s0}
+${goto 50}${color grey}IP: ${alignr}${color}${addr wlp1s0}
+
+
+${goto 30}${font Pizza Dude Bullets:size20}Y${voffset -10} ${font  Raleway:weight Light:size=20}Battery
+${goto 50}${color lightgrey}${font}Battery: ${alignr}${color}${exec python ~/dev/scripts/python/conkybat.py}${color lightgrey}
+${goto 50}${color lightgrey}ET: ${alignr}${color}${exec python ~/dev/scripts/python/conkybatT.py}
+
+
+${goto 30}${font Pizza Dude Bullets:size20}Y${voffset -10} ${font Raleway:weight Light:size=20}Resources
+${goto 50}${font}${color lightgrey}Ram: ${alignr}${color}$mem${color lightgrey} / ${color}$memmax
+${goto 50}${color lightgrey}/:   ${alignr}${color}${fs_used}${color lightgrey} / ${color}${fs_size}
+
+
+${goto 30}${font Pizza Dude Bullets:size20}Y${voffset -10} ${font Raleway:weight Light:size=20}Keybindings
+${goto 50}${font}${color grey}W + 1-4:${alignr}${color}Desktop 1-4
+${goto 50}${font}${color grey}W + Escape:${alignr}${color}Close
+${goto 50}${font}${color grey}W + Right:${alignr}${color}Snap Right
+${goto 50}${font}${color grey}W + Left:${alignr}${color}Snap Left
+${goto 50}${font}${color grey}W + Up:${alignr}${color}Maximize
+${goto 50}${font}${color grey}W + Down:${alignr}${color}Minimize
+${goto 50}${font}${color grey}A + c:${alignr}${color}Chromium
+${goto 50}${font}${color grey}A + u:${alignr}${color}urxvt
+
+
+
+]]

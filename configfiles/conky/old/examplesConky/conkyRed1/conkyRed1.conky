@@ -1,0 +1,106 @@
+conky.config = {
+    alignment = 'top_right',
+    background = false,
+    border_width = 1,
+    color2 = 'white',
+    color3 = '6600FF',
+    color4 = 'red',
+    cpu_avg_samples = 2,
+    default_color = '6666FF',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    double_buffer = true,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    extra_newline = false,
+    font = 'DejaVu Sans Mono:size=10.5',
+    gap_x = 5,
+    gap_y = 50,
+    minimum_height = 5,
+    minimum_width = 410,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_stderr = false,
+    own_window = true,
+    own_window_argb_visual = true,
+    own_window_class = override,
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    own_window_transparent = true,
+    own_window_type = 'conky',
+    stippled_borders = 0,
+    show_graph_scale = false,
+    show_graph_range = false,
+    temperature_unit = 'fahrenheit',
+    update_interval = 1.0,
+    update_interval_on_battery = 5,
+    uppercase = false,
+    use_spacer = 'none',
+    use_xft = true
+}
+
+conky.text = [[
+
+${if_mounted /media/bishop/Backup}${else}$alignc${color4}BACKUP NOT MOUNTED!${endif}
+${color3}Dell ${nodename} ${voffset 2}${hr 3}
+${color}
+#${color}Today is:${color2}$alignr${time %A, }$alignr${time %e %B %G}
+${color}Distribution:${color2}$alignr ${exec (lsb_release -d | cut -f 2)} $machine
+${color}Kernel:$alignr${color2} $kernel
+${color}Uptime:$alignr${color2} $uptime
+${color}Load Avg: ${alignr}${color2}${loadavg 1}  ${loadavg 2}  ${loadavg 3}
+${color}Entropy: ${alignr}${color2}${entropy_avail} of ${entropy_poolsize} / ${entropy_perc}%
+${color}Mouse Battery: ${alignr}${color2}${execi 10 upower --dump | grep -A 6 mouse | grep percentage | awk '{print $2}'}
+${color}
+${color3}LOGICAL CORES ${voffset 2}${hr 3}
+${color}${voffset 5}Intel® i7-8550U: ${color2}${freq} MHz ${goto 235}${color}Temp: ${color2}${hwmon 1 temp 1}°F ${alignr}${color}Load: ${color2}${cpu}%
+${color}
+${goto 13}${color}CPU-0 ${color2}${cpu cpu1}% ${goto 105}${color3}${cpubar cpu1 10,100} ${goto 225}${color}CPU-4 ${color2}${cpu cpu5}% ${goto 320}${color3}${cpubar cpu5 10,100}
+${goto 13}${color}CPU-1 ${color2}${cpu cpu2}% ${goto 105}${color3}${cpubar cpu2 10,100} ${goto 225}${color}CPU-5 ${color2}${cpu cpu6}% ${goto 320}${color3}${cpubar cpu6 10,100}
+${goto 13}${color}CPU-2 ${color2}${cpu cpu3}% ${goto 105}${color3}${cpubar cpu3 10,100} ${goto 225}${color}CPU-6 ${color2}${cpu cpu7}% ${goto 320}${color3}${cpubar cpu7 10,100}
+${goto 13}${color}CPU-3 ${color2}${cpu cpu4}% ${goto 105}${color3}${cpubar cpu4 10,100} ${goto 225}${color}CPU-7 ${color2}${cpu cpu8}% ${goto 320}${color3}${cpubar cpu8 10,100}
+${color}
+${color2}$running_processes ${color}of ${color2}$processes ${color}processes running ${alignr}${color2}${threads}${color} Threads
+${color}
+${color3}GPU ${voffset 2}${hr 3}
+${color}${voffset 5}Intel® UHD Graphics 620 (Kabylake GT2)
+${color}Min: ${color2}${execpi .001 (cat /sys/class/drm/card0/gt_min_freq_mhz)} MHz${color} ${goto 145}Current: ${color2}${execpi .001 (cat /sys/class/drm/card0/gt_cur_freq_mhz)} MHz ${alignr}${color}Max: ${color2}${execpi .001 (cat /sys/class/drm/card0/gt_max_freq_mhz)} MHz
+${color}
+${color3}PROCESSES ${voffset 2}${hr 3}
+${color}${voffset 5}Process Name: ${goto 215}PID ${goto 290}CPU% ${goto 365}Mem%
+${color}${goto 13}${top name 1} ${goto 210}${top pid 1} ${goto 275}${color2}${top cpu 1} ${goto 350}${top mem 1}
+${color}${goto 13}${top name 2} ${goto 210}${top pid 2} ${goto 275}${color2}${top cpu 2} ${goto 350}${top mem 2}
+${color}${goto 13}${top name 3} ${goto 210}${top pid 3} ${goto 275}${color2}${top cpu 3} ${goto 350}${top mem 3}
+${color}${goto 13}${top name 4} ${goto 210}${top pid 4} ${goto 275}${color2}${top cpu 4} ${goto 350}${top mem 4}
+${color}${goto 13}${top name 5} ${goto 210}${top pid 5} ${goto 275}${color2}${top cpu 5} ${goto 350}${top mem 5}
+${color}
+${color3}STORAGE ${voffset 2}${hr 3}
+${color}Memory: ${goto 148}${color2}$mem / $memmax $alignr${color2}${memperc /}%
+${color}Disk: ${goto 148}${color2}${fs_used /} / ${fs_size /} $alignr${color2}${fs_used_perc /}%
+${color}
+${color3}DATA ${voffset 2}${hr 3}
+${color} ${goto 5}Today ${goto 110}Yesterday ${goto 240}Week ${alignr}Month${if_up enx00e04c534458}
+${color2}${execi 10 vnstat -i enx00e04c534458 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}'} ${goto 110}${execi 10 vnstat -i enx00e04c534458 | grep "yesterday" | awk '{print $8" "substr ($9, 1, 1)}'} ${goto 240}${execi 10 vnstat -i enx00e04c534458 -w | grep "current week" | awk '{print $9" "substr ($10, 1, 1)}'} ${alignr}${execi 10 vnstat -i enx00e04c534458 -m | grep "`date +"%b '%y"`" | awk '{print $9" "substr ($10, 1, 1)}'}
+${goto 110}${color}Down: ${color2}${downspeed enx00e04c534458} ${goto 240}${color}Up: ${color2}${upspeed enx00e04c534458}
+${goto 110}${color}Total: ${color2}${totaldown enx00e04c534458} ${goto 240}${color}Total: ${color2}${totalup enx00e04c534458}
+${color}
+${else}
+${color2}${execi 10 vnstat -i wlp2s0 | grep "today" | awk '{print $8" "substr ($9, 1, 1)}'} ${goto 110}${execi 10 vnstat -i wlp2s0 | grep "yesterday" | awk '{print $8" "substr ($9, 1, 1)}'} ${goto 240}${execi 10 vnstat -i wlp2s0 -w | grep "current week" | awk '{print $9" "substr ($10, 1, 1)}'} ${alignr}${execi 10 vnstat -i wlp2s0 -m | grep "`date +"%b '%y"`" | awk '{print $9" "substr ($10, 1, 1)}'}${color}
+${color}
+${goto 110}${color}Down: ${color2}${downspeed wlp2s0} ${goto 240}${color}Up: ${color2}${upspeed wlp2s0}
+${goto 110}${color}Total: ${color2}${totaldown wlp2s0} ${goto 240}${color}Total: ${color2}${totalup wlp2s0}${endif}${color}
+${color3}NETWORK ${voffset 2}${hr 3}${if_gw}
+${if_up enx00e04c534458}
+${color}Internal IP: ${alignr}${color2}${addr enx00e04c534458}${else}
+${color}SSID: ${alignr}${color2}${wireless_essid wlp2s0}
+${color}Link Quality: ${alignr}${color2}${wireless_link_qual_perc wlp2s0}% (${wireless_link_qual wlp2s0}/${wireless_link_qual_max wlp2s0})
+${color}Internal IP: ${alignr}${color2}${addr wlp2s0}${endif}
+${color}External IP: ${alignr}${color2}${exec curl "http://myexternalip.com/raw"}
+${color}Gateway IP: ${alignr}${color2}${gw_ip}
+${color}VPN: ${alignr}${color2}${execi 10 nmcli con show --active | grep "  vpn" | cut -f1 -d " "}
+${else}${color}No network detected...${endif}
+${color}Top Attackers:
+${color4}${execi 5 cat ~/logs/psad4conky}
+]]
