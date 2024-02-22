@@ -1,0 +1,358 @@
+" IdeaVim Plugin ~/.ideavimrc
+""" ---------------------------------------------------------------------------
+" Info:              https://github.com/JetBrains/ideavim
+" More examples:     https://jb.gg/share-ideavimrc
+""" ---------------------------------------------------------------------------
+
+let mapleader=" "
+
+""" Plugins -------------------------------------------------------------------
+""" ---------------------------------------------------------------------------
+" IdeaVim plugins:   https://jb.gg/ideavim-plugins
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+set easymotion
+set surround
+
+""" Which-key
+"set which-key
+set notimeout
+let g:WhichKeyDesc_leader = "<leader> Leader key"
+let g:WhichKey_CommandColor = "#987DD2"
+let g:WhichKey_FontSize = 12
+let g:WhichKey_PrefixColor = "#8AA9F9"
+let g:WhichKey_ShowVimActions = "true"
+let g:WhichKey_DefaultDelay = 400
+let g:WhichKey_SortOrder = "by_key_prefix_first"
+let g:WhichKey_SortCaseSensitive = "false"
+
+""" Common settings -----------------------------------------------------------
+""" ---------------------------------------------------------------------------
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+set scrolloff=2
+set history=1000
+set number relativenumber
+set clipboard^=unnamedplus,unnamed
+
+""" IdeaVim specific settings -------------------------------------------------
+""" ---------------------------------------------------------------------------
+" List of commands: https://jb.gg/h38q75
+set ideajoin         " IntelliJ smart join
+set ideastatusicon=gray
+"set ideamarks
+
+""" Mappings ------------------------------------------------------------------
+""" ---------------------------------------------------------------------------
+map <esc>             :nohlsearch<CR>
+
+map gs<leader>         <Plug>(easymotion-s)   " TODO find mapping
+map gsf                <Plug>(easymotion-f)   " TODO find mapping
+
+""" IdeaVim actions -----------------------------------------------------------
+""" ---------------------------------------------------------------------------
+" Info:              https://jb.gg/abva4t
+" Actions:           :actionlist
+" Reload             :source ~/.ideavimrc
+nmap <leader>v        <action>(IdeaVim.ReloadVimRc.reload)
+nmap <leader>V        <action>(VimActions)
+
+map <leader>z         <action>(ToggleDistractionFreeMode)
+map <leader>Z         <action>(TogglePresentationMode)
+
+" TODO test
+"<Action>(tasks.goto)
+
+""" Project -------------------------------------------------------------------
+nmap <leader>pp       <action>(ManageRecentProjects)
+"map <leader>cP         <action>(CloseProject)
+"map <leader>NP         <action>(NewProject)
+
+""" Window Navigation ---------------------------------------------------------
+
+" Tool Windows
+nmap <leader>T        <action>(ToolWindowsGroup)
+nmap <leader>tp       <action>(ActivateProjectToolWindow)
+
+"nmap <leader>si        <action>(SelectInProjectView)
+nmap <leader>tt       <Action>(ActivateTerminalToolWindow)
+nmap <leader>tc       <Action>(Terminal.OpenInTerminal)
+nmap <leader>tvc      <action>(ActivateCommitToolWindow)
+nmap <leader>tv       <action>(ActivateVersionControlToolWindow)
+"ActivatePullRequestsToolWindow
+nmap <leader>tr        <action>(ActivateRunToolWindow)
+nmap <leader>td        <action>(ActivateDebugToolWindow)
+nmap <leader>te        <action>(ActivateProblemsViewToolWindow)
+nmap <leader>ts        <action>(ActivateStructureToolWindow)
+"nmap <leader>AD        <action>(ActivateDatabaseToolWindow)
+nmap <leader>to       <action>(ActivateTODOToolWindow)
+"nmap <leader>AM        <action>(ActivateMavenToolWindow)
+"ActivatePythonConsoleToolWindow
+
+"nmap <leader>ss       <action>(SelectIn)
+
+"nmap <leader>H        <action>(MaximizeToolWindow)
+nmap <leader>ha         <action>(HideActiveWindow)
+nmap <leader>hA        <action>(HideAllWindows)
+
+nmap <leader>wc       <action>(CloseContent)
+nmap <leader>qa       <action>(CloseAllEditors)
+"nmap <leader>qa       <action>(CloseAllEditorsButActive)
+
+" Window
+let g:WhichKeyDesc_window = "<leader>w Window"
+nmap <space>wh        <c-w>h
+nmap <space>wl        <c-w>l
+nmap <space>wj        <c-w>j
+nmap <space>wk        <c-w>k
+nmap <leader>wv       <action>(SplitVertically)
+nmap <leader>ws       <action>(SplitHorizontally)
+nmap <leader>wu       <action>(Unsplit)
+nmap <leader>wU       <action>(UnsplitAll)
+nmap <leader>wm       <action>(MaximizeEditorInSplit)
+
+" Tab
+nmap <Tab>           <action>(NextTab)
+nmap <S-TAB>         <action>(PreviousTab)
+nmap <leader>wo      <action>(MoveEditorToOppositeTabGroup)
+"map <leader>sh        <action>(MoveTabLeft)
+"map <leader>sj        <action>(MoveTabDown)
+"map <leader>sk        <action>(MoveTabUp)
+"map <leader>sl        <action>(MoveTabRight)
+
+" Menus
+let g:WhichKeyDesc_menu = "<leader>m Menus"
+nmap <leader>mm       <action>(MainMenu)
+"nmap <leader>ma       <action>(AnalyzeMenu)
+"nmap <leader>mb       <action>(BuildMenu)
+nmap <leader>mc       <action>(CodeMenu)
+nmap <leader>mf       <action>(FindMenuGroup)
+nmap <leader>mg       <action>(GoToMenu)
+nmap <leader>ms       <action>(ScopeViewPopupMenu)
+nmap <leader>mt       <action>(EditorTabPopupMenu)
+nmap <leader>mv       <action>(VcsGroups)
+
+""" Code Navigation -----------------------------------------------------------
+nmap [[               <action>(MethodUp)
+nmap ]]               <action>(MethodDown)
+
+nmap <leader>si        <action>(FileStructurePopup)
+
+nmap <leader>u        <action>(ShowUsages)
+nmap <leader>U        <action>(FindUsages)
+"nmap <leader>qp       <action>(QuickPreview)
+"nmap <leader>qd       <action>(QuickDefinition)
+"nmap <leader>qD       <action>(QuickTypeDefinition)
+
+nmap <leader>hc       <action>(CallHierarchy)
+nmap <leader>hm       <action>(MethodHierarchy)
+nmap <leader>ht       <action>(TypeHierarchy)
+
+" TODO sort + mapping
+nmap <leader>mf       <action>(FindMenuGroup)
+"vmap /                <action>(Find)
+nmap <leader>sp       <action>(FindInPath)
+nmap <leader>sr       <action>(ReplaceInPath)
+
+"map <leader>a         <action>(Annotate)
+
+"map <leader>h         <action>(Vcs.ShowTabbedFileHistory)
+
+nmap ga               <Action>(GotoAction)
+"nmap gc               <Action>(GotoClass)
+"nmap gs               <Action>(GotoSymbol)
+nmap gt               <Action>(GoToTest)
+nmap gT               <Action>(TextSearchAction)
+nmap go               <Action>(GotoSuperMethod)
+nmap gd               <Action>(GotoDeclaration)
+nmap gD               <Action>(GotoTypeDeclaration)
+nmap gi               <Action>(GotoImplementation)
+nmap gI               <Action>(QuickImplementations)
+"nmap gd               <action>(GotToDeclaration)
+"nmap <leader>s        <action>(GotoRelated)
+"nmap gp               <action>(GotoSuperMethod)
+
+" "Information..."
+"map <Space>ti         <action>(ExpressionTypeInfo)
+"map <Space>pi         <action>(ParameterInfo)
+"map <Space>jd         <action>(QuickJavaDoc)
+"map <Space>sd         <action>(ShowUmlDiagram)
+"map <Space>ch         <action>(CallHierarchy)
+"map <Space>mh         <action>(MethodHierarchy)
+"map <Space>ss         <action>(ShowSettings)
+"map <Space>ps         :action ShowProjectStructureSettings<CR>
+
+" Bookmarks (replace marks)
+nmap '               <Action>(ShowBookmarks)
+nmap M               <Action>(ToggleBookmark)
+nmap m               <Action>(ToggleBookmarkWithMnemonic)
+
+" File navigation -------------------------------------------------------------
+nmap <leader>ff       <action>(GotoFile)
+nmap <leader>.        <action>(GotoFile)
+nmap <leader>fo       <action>(OpenFile)
+nmap <leader>fr       <action>(RecentFiles)
+nmap <leader>fR       <action>(RecentLocations)
+
+nmap gn               <Action>(ShowNavBar)
+
+"nmap <leader>gc       <action>(GotoClass)
+
+" TODO sort
+"nmap gs               <action>(GotoSuperMethod)
+"nmap gi               <action>(GotoImplementation)
+"nmap g,               <action>(JumpToLastChange)
+"nmap g.               <action>(JumpToNextChange)
+"nmap gd               <action>(GotoDeclaration)
+"nmap <leader>gq       <action>(QuickList.Git)
+"nmap <leader>ns       <action>(NewScratchFile)
+"nmap <leader>nf       <action>(NewElementSamePlace)
+"nmap <leader>ge       <action>(Generate)
+"nmap <leader>re       <action>(Replace)
+
+""" Code Editing -----------------------------------------------------------
+nmap <leader>sh       <action>(LocalHistory.ShowHistory)
+
+nmap <c-space>        <action>(ShowIntentionActions)
+
+" Errors
+nmap <leader>se       <action>(ShowErrorDescription)
+nmap <leader>ic       <action>(InspectCode)
+nmap ge               <action>(GotoNextError)
+nmap gE               <action>(GotoPreviousError)
+
+"map <leader>c         <action>(CommentByLineComment)
+"map <leader>C         <action>(CommentByBlockComment)
+
+
+nmap <leader>gt       <action>(GoToTest)
+
+nmap z.               <action>(ExpandCollapseToggleAction)
+nmap Zc               <action>(CollapseAllRegions)
+nmap Zo               <action>(ExpandAllRegions)
+
+" Refactoring
+nmap <Leader>==       <action>(ReformatCode)
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+nmap <leader>=i       <action>(OptimizeImports)
+
+"nmap <leader>gc       <action>(Generate)
+"nmap <leader>om       <action>(OverrideMethods)
+"nmap <leader>im       <action>(ImplementMethods)
+
+map <leader>R         <action>(Refactorings.QuickListPopupAction)
+map <Space>rr         <action>(RenameElement)
+map <Space>rf         <action>(RenameFile)
+
+"map <Space>ms         <action>(MakeStatic)
+"map <Space>ci         <action>(ConvertToInstanceMethod)
+"map <Space>il         <action>(Inline)
+"map <Space>em         <action>(ExtractMethod)
+"map <Space>ei         <action>(ExtractInterface)
+"map <Space>ef         <action>(EncapsulateFields)
+"map <Space>rmo        <action>(ReplaceMethodWithMethodObject)
+"map <Space>iv         <action>(IntroduceVariable)
+"map <Space>ic         <action>(IntroduceConstant)
+"map <Space>ip         <action>(IntroduceParameter)
+"map <Space>if         <action>(IntroduceField)
+"map <Space>po         <action>(IntroduceParameterObject)
+"map <Space>pd         <action>(MemberPushDown)
+"map <Space>pu         <action>(MembersPullUp)
+"map <Space>cs         <action>(ChangeSignature)
+"map <Space>ai         <action>(AnonymousToInner)
+
+"map <Space>sw         <action>(SurroundWith)
+"map <Space>sm         <action>(ShowPopupMenu)
+"map <Space>st         <action>(SaveAsTemplate)
+"map <Space>cap        <action>(CopyAbsolutePath)
+"map <Space>ccp        <action>(CopyContentRootPath)
+"nmap <Space>cv        <action>(ChangeView)
+"map <Space>co         <action>(CloseAllEditorsButActive)
+"map <Space>ag         :action antlr.Generate<CR>:action antlr.Generate<CR>
+"map <Space>bc         <action>(ByteCodeViewer)
+"map <Space>qq         <action>($TranslateTextComponent)
+"map <Space>tr         <action>($TranslateAndReplaceAction)
+"map <Space>gfu        <action>(GenerateFullRestUrl)
+"map <Space>atf        <action>(AddToFavorites)
+"map <Space>cE         <action>(CopyElement)
+"map <Space>nE         <action>(NewElement)
+"map <Space>dE         <action>(SafeDelete)
+"nmap <Space>cp        <action>(CheckinProject)
+"nmap <CR><CR>         <action>(ShowIntentionActions)
+"nmap <Space><CR>      <action>(GotoNextError)
+"map <Space>nc         <action>(NewClass)
+"map <Space>ri         <action>(RevealIn)
+"map <Space>ga         <action>(Generate)
+"map <Space>cu         <action>(CloseAllUnmodifiedEditors)
+"map <Space>oc         <action>(OpenCodotaSearch)
+"map <Space>AC         <action>(ActivateCodotaToolWindow)
+
+" VCS -------------------------------------------------------------------------
+nmap <leader>mv       <action>(VcsGroups)
+"nmap -                <action>(Annotate)
+"nmap <leader>m        <action>(Vcs.QuickListPopupAction)
+
+" Running & Debugging ---------------------------------------------------------
+"nmap ,r ...
+"nmap ,r               <action>(ContextRun)
+"nmap <leader>rr       <action>(Run)
+"nmap ,c               <action>(RunClass)
+"nmap ,u               <action>(Rerun)
+"nmap <Space>rc        <action>(RunConfiguration)
+"nmap ,f               <action>(ChooseRunConfiguration)
+
+"nmap <Space>sp        <action>(Stop)
+
+"nmap ,d               <action>(ContextDebug)
+nmap <leader>dd       <action>(Debug)
+"nmap <Space>dn        <action>(DebugClass)
+
+"AddBreakpoint
+"AddConditionalBreakpoint
+nmap <leader>dbb      <action>(ToggleLineBreakpoint)
+nmap <leader>dbe      <action>(EditBreakpoint)
+nmap <leader>dbv      <action>(ViewBreakpoints)
+
+"nmap <C-j>            <action>(StepOver)
+"nmap <C-k>            <action>(Resume)
+"nmap <C-h>            <action>(StepOut)
+"nmap <C-l>            <action>(ForceStepInto)
+
+"nmap <Space>cc        <action>(Coverage)
+"nmap <Space>cn        <action>(RunCoverage)
+
+"nmap <Space>qe        <action>(QuickEvaluateExpression)
+"nmap <Space>ee        <action>(EvaluateExpression)
+
+" TODO Brauch ich eher nicht
+"nmap <Space>fr        <action>(Debugger.ForceEarlyReturn)
+"nmap <Space>daw       <action>(Debugger.AddToWatch)
+"nmap <Space>fc        <action>(ForceRunToCursor)
+"nmap <Space>hs        <action>(Hotswap)
+"nmap <Space>DD        <action>(JRebeb)ug<CR>
+"nmap <Space>rab       <action>(Debugger.RemoveAllBreakpointsInFile)
+"nmap <Space>raB       <action>(Debugger.RemoveAllBreakpoints)
+"nmap <Space>df        <action>(Debugger.PopFrame)
+"nmap <Space>pp        <action>(ShowExecutionPoint)
+"nmap <Space>ds        <action>(StreamTracerAction)
+"nmap <Space>mb        <action>(XDebugger.MuteBreakpoints)
+
+" Rest ------------------------------------------------------------------------
+"map <Space>te         <action>(SearchEverywhere)
+"map  <Space>tu mm`m   <action>(Toolkit.GotoService)
+"nmap <Space>ta mm`m   <action>(GotoAction)
+"map <Space>tf mm`m    <action>(GotoFile)
+"map <Space>tc mm`m    <action>(GotoClass)
+"map <Space>ne mm`m    <action>(GotoNextError)
+"map <Space>pe mm`m    <action>(GotoPreviousError)
+"map <Space>gs mm`m    <action>(GotoSuperMethod)
+"map <Space>gi mm`m    <action>(GotoImplementation)
+"map <Space>g, mm`m    <action>(JumpToLastChange)
+"map <Space>g; mm`m    <action>(JumpToNextChange)
+"map <Space>rF         <action>(RecentChangedFiles)
+"map <Space>nw         <action>(NextProjectWindow)
+"map <Space>pw         <action>(PreviousProjectWindow)
