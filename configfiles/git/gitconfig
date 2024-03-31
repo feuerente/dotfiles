@@ -1,9 +1,14 @@
+[commit]
+	verbose = true
 [user]
 	name = Ralf Herp
 	email = 65463376+feuerente@users.noreply.github.com
 
 [core]
-	editor = vim
+	; editor = code --wait
+	editor = nvim
+	autocrlf = input
+	excludesfile = ~/.gitignore_global
 
 [alias]
 	a = add --all	
@@ -32,3 +37,24 @@
 
 [diff]
 	submodule = log
+
+# HACK fix dubious ownership
+[safe]
+	directory = *
+
+[protocol "fil"]
+	allow = always
+[protocol "file"]
+	allow = always
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[credential]
+	helper = /usr/lib/git-core/git-credential-libsecret
+	credentialStore = secretservice
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[credential "https://git.overleaf.com"]
+	provider = generic

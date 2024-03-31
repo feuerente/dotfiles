@@ -43,7 +43,7 @@ vim.opt.showbreak = "↪"
 vim.opt.breakindent = true
 vim.opt.sidescrolloff = 5
 
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 vim.opt.scrolloff = 5
 

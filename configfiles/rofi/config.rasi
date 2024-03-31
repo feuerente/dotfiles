@@ -155,4 +155,5 @@ configuration {
   }
 }
 
-@import "~/.config/rofi/themes/android_notification.rasi"
+/* @import "~/.config/rofi/themes/android_notification.rasi" */
+@import "~/.config/rofi/themes/my-catppuccin-mocha.rasi"

@@ -1,8 +1,33 @@
 # Aliases for my zsh configuration
 #
 
+alias ce='
+   mamba activate ros_ba_env && 
+   source ~/projects/ba_ml/ros_ba_workspace/install/setup.zsh'
+
+alias build_sim='
+   cd /mnt/data/projects/ba_ml/ros_ba_workspace &&
+   mamba activate ros_ba_env &&
+   mamba install -y mesalib &&
+   colcon build --packages-select rackki_learning &&
+   mamba uninstall -y mesalib'
+
+alias sim='
+   ce
+   ros2 launch rackki_learning simulator.launch.py'
+alias hosas='
+   ce
+   ros2 launch rackki_learning teach_device_hosas.launch.py'
+
+# Use function for alias to skip quoting problems
+
+gdangling() {
+   git log --graph --oneline --decorate --all $(git fsck --no-reflog | awk '/dangling commit/ {print $3}') "$@"
+}
+
 alias lo='libreoffice'
 alias tldrf="tldr --list | sed \"s/[][]//g; s/, /\n/g; s/'//g\" | fzf --preview='tldr {1}' --preview-window=right,70% | xargs tldr"
+alias ra='ranger'
 
 #list
 alias ls='ls --color=auto'
@@ -137,15 +162,25 @@ alias yta-flac="yt-dlp --extract-audio --audio-format flac "
 alias yta-mp3="yt-dlp --extract-audio --audio-format mp3 "
 alias ytv-best="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 "
 
+# Package Management
+#-------------------------------------------------------------------------------
 #Recent Installed Packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
 
-#iso and version used to install ArcoLinux
-alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'"
-
 #Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+
+# Browse installed packages with instant preview
+alias packages-browse-installed="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
+
+# Browse packages
+alias packages-browse-all="pacman -Slq | fzf --preview 'pacman -Si {}' --layout=reverse"
+
+#-------------------------------------------------------------------------------
+
+#iso and version used to install ArcoLinux
+alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'"
 
 #clear
 alias clean="clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat"

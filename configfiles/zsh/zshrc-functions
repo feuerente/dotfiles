@@ -7,11 +7,11 @@
 # Add more configs by adding them in a "~/.config/nvim-<name>" directory
 # Source: https://www.youtube.com/watch?v=LkHjJlSgKZY
 #
-
-#alias nvim-lazy="NVIM_APPNAME=nvim-LazyVim nvim"
-
+# alias nvim-lazy="NVIM_APPNAME=nvim-LazyVim nvim"
+alias n="nvim"
+#
 function nvims() {
-  items=("default" "LazyVim" "AstroNvim" "NvChad" "Neovim-from-scratch" "my")
+  items=("default" "kickstart" "AstroNvim" "LazyVim" "NvChad" "Neovim-from-scratch" "my")
   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
   if [[ -z $config ]]; then
     echo "Nothing selected"

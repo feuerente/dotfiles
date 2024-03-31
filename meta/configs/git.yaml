@@ -1,2 +1,3 @@
 - link:
     ~/.gitconfig: configfiles/git/gitconfig
+    ~/.gitignore_global: configfiles/git/gitignore_global

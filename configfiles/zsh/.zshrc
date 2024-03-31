@@ -133,7 +133,8 @@ export KEYTIMEOUT=1
 ####   ARCOLINUX SETTINGS   ####
 
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 setopt GLOB_DOTS
 
@@ -143,10 +144,12 @@ setopt GLOB_DOTS
 export HISTCONTROL=ignoreboth:erasedups
 
 export EDITOR='nvim'
-export VISUAL='emacs'
+export VISUAL='nvim'
 
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
+export ARM_TOOLCHAIN="/opt/arm-gnu-toolchain-11.3.rel1-x86_64-arm-none-eabi/bin"
+export ZEPHYR_SDK_INSTALL_DIR="$HOME/.local/opt"
 
 # When fzf is invoked with no input this command is used
 # I modified it to also find linked files
@@ -169,6 +172,13 @@ fi
 if [ -d "$HOME/bin" ] ;
   then PATH="$HOME/bin:$PATH"
 fi
+
+path+=("$HOME/.local/bin/")
+path+=("$HOME/.dotfiles/scripts")
+path+=("$HOME/.config/emacs/bin")
+path+=("$HOME/repos/strtt/build/src/rtt")
+path+=("$HOME/.local/bin/miniconda3/condabin")
+
 export PATH
 
 [[ ! -f ~/.config/zsh/.zshrc-alias ]] || source ~/.config/zsh/.zshrc-alias
@@ -176,3 +186,28 @@ export PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+xmodmap ~/.Xmodmap
+
+eval "$(zoxide init zsh)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/ralf/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/ralf/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/home/ralf/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/ralf/miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+if [ -f "/home/ralf/miniforge3/etc/profile.d/mamba.sh" ]; then
+    . "/home/ralf/miniforge3/etc/profile.d/mamba.sh"
+fi
+# <<< conda initialize <<<
+
+export rackki_interfaces_DIR="/mnt/data/projects/ba_ml/ros_ba_workspace/install/rackki_interfaces/share/rackki_interfaces/cmake"
