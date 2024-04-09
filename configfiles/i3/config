@@ -460,6 +460,7 @@ bindsym $mod+Shift+f exec --no-startup-id firefox;focus
 bindsym $mod+Shift+e exec --no-startup-id emacsclient -c -a 'emacs';focus
 bindsym $mod+Shift+n exec --no-startup-id alacritty -e nvim;focus
 bindsym $mod+Shift+Return exec --no-startup-id alacritty -e ranger;focus
+bindsym $mod+Shift+t exec --no-startup-id alacritty -e btop;focus
 #bindsym $mod+Shift+Return exec --no-startup-id thunar;focus
 
 
